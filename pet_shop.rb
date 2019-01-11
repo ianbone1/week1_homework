@@ -1,6 +1,3 @@
-
-
-
 def pet_shop_name(pet_shop)
   return pet_shop[:name]
 end
@@ -28,14 +25,12 @@ def stock_count(pet_shop)
 end
 
 def pets_by_breed(pet_shop, breed)
-  return pet_shop[:pets].select {|pet| pet[:breed] == breed }
+  return pet_shop[:pets].select {|pet| pet[:breed] == breed}
 end
 
 def find_pet_by_name(pet_shop, name)
-  for pet in pet_shop[:pets]
-    return pet if pet[:name] == name
-  end
-  return nil
+  pet_found = pet_shop[:pets].select {|pet| pet[:name] == name}
+  return pet_found.count > 0 ? pet_found[0] : nil
 end
 
 def remove_pet_by_name(pet_shop, pet_to_remove)
