@@ -44,11 +44,7 @@ end
 
 def remove_pet_by_name(pet_shop, pet_to_remove)
   #binding.pry
-  new_pets = []
-  for pet in pet_shop[:pets]
-    new_pets << pet if pet[:name] != pet_to_remove
-  end
-  pet_shop[:pets] = new_pets
+  pet_shop[:pets] = pet_shop[:pets].select {|pet| pet[:name] != pet_to_remove}
   return nil
 end
 
