@@ -17,7 +17,6 @@ end
 
 def increase_pets_sold(pet_shop, number_of_pet_sales)
   pet_shop[:admin][:pets_sold] += number_of_pet_sales
-  return nil
 end
 
 def stock_count(pet_shop)
@@ -36,12 +35,10 @@ end
 def remove_pet_by_name(pet_shop, pet_to_remove)
   #binding.pry
   pet_shop[:pets] = pet_shop[:pets].select {|pet| pet[:name] != pet_to_remove}
-  return nil
 end
 
 def add_pet_to_stock(pet_shop, new_pet)
   pet_shop[:pets] << new_pet
-  return nil
 end
 
 def customer_cash(customer)
@@ -50,7 +47,6 @@ end
 
 def remove_customer_cash(customer, amount)
   customer[:cash] -= amount
-  return nil
 end
 
 def customer_pet_count(customer)
@@ -59,13 +55,12 @@ end
 
 def add_pet_to_customer(customer, new_pet)
   customer[:pets] << new_pet
-  return nil
 end
 
 #Optional tasks
 
 def customer_can_afford_pet(customer, the_pet)
-  return customer[:cash] >= the_pet[:price] ? true : false
+  return customer[:cash] >= the_pet[:price]
 end
 
 def sell_pet_to_customer(pet_shop, pet, customer)
@@ -74,7 +69,7 @@ def sell_pet_to_customer(pet_shop, pet, customer)
   #check shop has the pet
   return false if find_pet_by_name(pet_shop, pet[:name]) == nil
   # check customer can afford pet
-  return false if !customer_can_afford_pet(customer,pet)
+  return unless customer_can_afford_pet(customer,pet)
   #remove pet from stock
   remove_pet_by_name(pet_shop, pet[:name])
   #increase shop cash
@@ -85,5 +80,4 @@ def sell_pet_to_customer(pet_shop, pet, customer)
   remove_customer_cash(customer, pet[:price])
   #add pet to customer
   add_pet_to_customer(customer, pet)
-  return true
 end
